@@ -62,7 +62,7 @@ cd LiteLists
 git remote add upstream https://github.com/gavelinrobert-beep/LiteLists.git
 
 # Install dependencies
-npm install
+pnpm install
 ```
 
 ### Branch Naming Convention
@@ -133,9 +133,9 @@ LiteLists/
 │   ├── web/          # Next.js web application
 │   └── mobile/       # Expo mobile application
 ├── packages/
-│   ├── shared/       # Shared utilities and types
-│   └── ui/           # Shared UI components
-├── supabase/         # Supabase migrations and config
+│   ├── ui/           # Shared UI components
+│   ├── database/     # Supabase schema & migrations
+│   └── shared/       # Shared utilities and types
 └── docs/             # Additional documentation
 ```
 

@@ -1,87 +1,69 @@
 # LiteLists
 
-**Real-time collaborative lists for roommates and small groups**
+**The fastest shared list app for households**
 
-LiteLists is a simple, fast, and intuitive app that helps roommates and small groups stay organized with shared lists. Whether it's groceries, chores, or household tasks, LiteLists keeps everyone on the same page in real-time.
+LiteLists is a real-time collaborative shopping and packing list app designed for roommates, couples, and small groups. Never forget what to buy or who's getting what – stay synced effortlessly with clean UX and instant updates.
 
-## ✨ Features
+## About
 
-- 📝 **Create and share lists** - Grocery lists, todo lists, chore assignments, and more
-- 🔄 **Real-time sync** - Changes appear instantly for all collaborators
-- 👥 **Group collaboration** - Perfect for roommates, families, and small teams
-- 📱 **Cross-platform** - Works seamlessly on web and mobile devices
-- 🎨 **Clean & simple** - Focused on what matters: your lists
+LiteLists helps households and small groups manage shared shopping lists and packing lists with **real-time collaboration** and **automatic cost splitting**. Designed for roommates, couples, and friend groups who want a simple, reliable way to coordinate purchases and tasks.
 
-## 🛠️ Tech Stack
+### What Makes LiteLists Different
 
-LiteLists is built with modern, reliable technologies:
+- **Clean UX**: Fast, intuitive interface focused on getting things done
+- **Reliable Sync**: Real-time updates powered by Supabase – no conflicts, no confusion
+- **Simple Cost Splitting**: Add prices per item, auto-calculate split totals
+- **Smart Reminders**: Recurring lists and intelligent refill suggestions
 
-- **Frontend (Web)**: [Next.js](https://nextjs.org/) - React framework with SSR and optimal performance
-- **Frontend (Mobile)**: [Expo](https://expo.dev/) - React Native development platform for iOS and Android
-- **Backend & Database**: [Supabase](https://supabase.com/) - Open-source Firebase alternative with PostgreSQL
-- **Real-time**: Supabase Realtime - WebSocket-based live updates
-- **Authentication**: Supabase Auth - Secure user management
-- **Deployment**: Vercel (web) + Expo EAS (mobile)
+## Features (MVP)
 
-## 🎯 MVP Scope
+- **Spaces**: Create and share households/groups via invite link or QR code
+- **Real-time Collaboration**: See live updates with presence indicators showing who's active
+- **Item Assignment**: Mark items with "who's on it?" to coordinate shopping
+- **Cost Splitting**: Add per-item pricing with automatic split calculations
+- **Activity Feed**: Track changes (e.g., "Alice checked off Milk")
+- **Recurring Lists**: Set up weekly grocery lists that repeat automatically
+- **Smart Reminders**: Get notified when frequently-bought items might need refilling
 
-The Minimum Viable Product focuses on core functionality:
+## Tech Stack
 
-### Included in MVP
-- ✅ User authentication (email/password)
-- ✅ Create, edit, and delete lists
-- ✅ Add, check off, and remove items
-- ✅ Invite collaborators to lists via email or shareable link
-- ✅ Real-time synchronization across devices
-- ✅ Basic mobile app (iOS and Android)
-- ✅ Responsive web application
+- **Frontend**: 
+  - Web: [Next.js](https://nextjs.org/)
+  - Mobile: [Expo](https://expo.dev/) (React Native)
+- **Backend**: [Supabase](https://supabase.com/) (Auth, Postgres, Realtime, Edge Functions)
+- **State Management**: Zustand or Jotai
+- **Payments**: Stripe
+- **Deployment**: Vercel (web) + EAS (mobile)
 
-### Post-MVP Features
-- 🔜 Push notifications for list updates
-- 🔜 Categories and tags for items
-- 🔜 Recurring lists (weekly groceries, etc.)
-- 🔜 Item assignment to specific users
-- 🔜 In-app messaging or comments
-- 🔜 Dark mode
+## Project Structure
 
-## 🗺️ Roadmap
+```
+/apps
+  /web          # Next.js web app
+  /mobile       # Expo React Native app
+/packages
+  /ui           # Shared UI components
+  /database     # Supabase schema & migrations
+  /shared       # Shared utilities and types
+/docs           # Additional documentation
+```
 
-### Phase 1: Foundation (Current)
-- Set up monorepo structure
-- Initialize Next.js and Expo projects
-- Configure Supabase backend
-- Implement basic authentication
+## Roadmap
 
-### Phase 2: Core Features
-- List CRUD operations
-- Item management
-- Real-time synchronization
-- Basic UI/UX implementation
+- **Week 1-2**: Core lists + spaces + invites + realtime
+- **Week 3**: Splitting + activity feed + presence
+- **Week 4**: Recurrence + reminders
+- **Week 5**: Polish + onboarding + metrics
+- **Week 6**: Beta launch
 
-### Phase 3: Collaboration
-- User invitations and sharing
-- Multi-user list access
-- Permissions management
-
-### Phase 4: Polish & Launch
-- Mobile app optimization
-- Performance improvements
-- User testing and feedback
-- Production deployment
-- App store submissions
-
-### Phase 5: Growth
-- Advanced features from post-MVP list
-- Analytics and insights
-- User feedback integration
-- Platform expansion
-
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
-- Node.js 18+ and npm/yarn/pnpm
+
+- Node.js 18+ (LTS recommended)
+- pnpm (package manager)
+- Supabase CLI (`brew install supabase/tap/supabase` or via npm)
 - Expo CLI (for mobile development)
-- Supabase account (free tier available)
 
 ### Installation
 
@@ -90,35 +72,67 @@ The Minimum Viable Product focuses on core functionality:
 git clone https://github.com/gavelinrobert-beep/LiteLists.git
 cd LiteLists
 
-# Install dependencies (when available)
-npm install
+# Install dependencies
+pnpm install
 
 # Set up environment variables
 cp .env.example .env.local
-# Add your Supabase credentials to .env.local
+# Edit .env.local with your Supabase and Stripe credentials
+
+# Start local Supabase (optional, for local development)
+supabase start
 
 # Run the web app
-npm run dev:web
+pnpm dev:web
 
-# Run the mobile app
-npm run dev:mobile
+# Run the mobile app (in a separate terminal)
+pnpm dev:mobile
 ```
 
-## 🤝 Contributing
+### Development Commands
 
-We welcome contributions! Please see our [CONTRIBUTING.md](CONTRIBUTING.md) for details on:
+```bash
+# Install dependencies
+pnpm install
+
+# Development
+pnpm dev              # Run all apps in development mode
+pnpm dev:web          # Run web app only
+pnpm dev:mobile       # Run mobile app only
+
+# Build
+pnpm build            # Build all apps
+pnpm build:web        # Build web app
+pnpm build:mobile     # Build mobile app
+
+# Linting & Formatting
+pnpm lint             # Lint all packages
+pnpm format           # Format code with Prettier
+```
+
+### Environment Variables
+
+Copy `.env.example` to `.env.local` and fill in the required values:
+
+- `NEXT_PUBLIC_SUPABASE_URL` - Your Supabase project URL
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY` - Your Supabase anonymous key
+- `SUPABASE_SERVICE_ROLE_KEY` - Supabase service role key (server-side only)
+- `STRIPE_SECRET_KEY` - Stripe secret key
+- `STRIPE_PUBLISHABLE_KEY` - Stripe publishable key
+
+## Contributing
+
+We welcome contributions! Please see our [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines on:
+
+- Setting up your development environment
+- Branch naming conventions
+- Commit message format
+- Pull request process
 - Code of conduct
-- Development workflow
-- Submitting pull requests
-- Coding standards
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 📧 Contact
-
-Questions or suggestions? Open an issue or reach out to the maintainers.
 
 ---
 
