@@ -1,0 +1,15 @@
+{
+  "name": "@litelists/shared",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Shared utilities, types, and business logic for LiteLists",
+  "main": "./src/index.ts",
+  "types": "./src/index.ts",
+  "scripts": {
+    "lint": "eslint .",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf dist node_modules"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}
